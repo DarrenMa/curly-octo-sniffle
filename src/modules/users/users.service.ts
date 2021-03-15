@@ -9,7 +9,8 @@ export class UsersService {
   constructor(@Inject(USER_REPOSITORY) private readonly userRepository: typeof User) { }
 
   async create(user: UserDto): Promise<User> {
-    return await this.userRepository.create<User>(user);
+    const userEntity = this.userRepository.create<User>(user)
+    return await this.userRepository.save(userEntity);
   }
 
   async findOneByEmail(email: string): Promise<User> {

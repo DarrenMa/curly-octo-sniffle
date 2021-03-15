@@ -1,36 +1,23 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, Generated } from "typeorm";
 
-@Table
-export class User extends Model<User> {
-    @Column({
-        type: DataType.STRING,
-        allowNull: true,
-    })
+@Entity()
+export class User extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    @Generated('increment')
+    id: string;
+
+    @Column({ nullable: true })
     firstname: string;
 
-    @Column({
-        type: DataType.STRING,
-        allowNull: true,
-    })
+    @Column({ nullable: true })
     surname: string;
 
-    @Column({
-        type: DataType.STRING,
-        unique: true,
-        allowNull: false,
-    })
+    @Column()
     email: string;
 
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
+    @Column()
     password: string;
 
-    @Column({
-        type: DataType.STRING,
-        unique: true,
-        allowNull: true,
-    })
+    @Column({ nullable: true })
     phone: string;
 }
